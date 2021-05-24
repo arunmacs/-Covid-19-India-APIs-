@@ -50,10 +50,10 @@ const convertJsonDistrictToObj = (jsonObj) => {
 
 const convertJsonStatsToObj = (jsonObj) => {
   return {
-    totalCases: jsonObj.cases,
-    totalCured: jsonObj.cured,
-    totalActive: jsonObj.active,
-    totalDeaths: jsonObj.deaths,
+    totalCases: jsonObj.totalCases,
+    totalCured: jsonObj.totalCured,
+    totalActive: jsonObj.totalActive,
+    totalDeaths: jsonObj.totalDeaths,
   };
 };
 
@@ -186,14 +186,15 @@ app.get("/states/:stateId/stats/", async (request, response) => {
     const { stateId } = request.params;
     const getStateStatsQuery = `
         SELECT 
-            cases,
-            cured,
-            active,
-            deaths
+            SUM(cases) AS totalCases,
+            SUM(cured) AS totalCured,
+            SUM(active) AS totalActive,
+            SUM(deaths) AS totalDeaths
         FROM district
-        WHERE state_id = ${stateId} ;`;
+        WHERE state_id = ${stateId};`;
     const stateStats = await database.get(getStateStatsQuery);
-    //console.log();
+    //console.log(stateStats);
+    //response.send(stateStats);
     response.send(convertJsonStatsToObj(stateStats));
   } catch (error) {
     console.log(`DB Error: ${error.message}`);

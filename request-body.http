@@ -43,7 +43,7 @@ DELETE http://localhost:3001/districts/320/
 
 ###
 
-GET http://localhost:3001/states/12/stats/
+GET http://localhost:3001/states/6/stats/
 
 ###
 
