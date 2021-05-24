@@ -1,0 +1,52 @@
+
+GET http://localhost:3001/states/
+
+###
+
+GET http://localhost:3001/states/3/
+
+###
+
+GET http://localhost:3001/districts/323/
+
+###
+
+POST http://localhost:3001/districts/
+Content-Type: application/json
+
+{
+  "districtName": "Bagalkot",
+  "stateId": 3,
+  "cases": 2323,
+  "cured": 2000,
+  "active": 315,
+  "deaths": 8
+}
+
+###
+
+PUT http://localhost:3001/districts/765/
+Content-Type: application/json
+
+{
+  "districtName": "aidaN",
+  "stateId": 5,
+  "cases": 9698,
+  "cured": 6534,
+  "active": 3090,
+  "deaths": 1045
+}
+
+###
+
+DELETE http://localhost:3001/districts/320/
+
+###
+
+GET http://localhost:3001/states/5/stats/
+
+###
+
+GET http://localhost:3001/districts/15/details/
+
+###
