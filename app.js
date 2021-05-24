@@ -184,7 +184,6 @@ app.put("/districts/:districtId/", async (request, response) => {
 app.get("/states/:stateId/stats/", async (request, response) => {
   try {
     const { stateId } = request.params;
-    //console.log(stateId);
     const getStateStatsQuery = `
         SELECT 
             cases,
@@ -194,7 +193,7 @@ app.get("/states/:stateId/stats/", async (request, response) => {
         FROM district
         WHERE state_id = ${stateId} ;`;
     const stateStats = await database.get(getStateStatsQuery);
-    //console.log(stateStats);
+    //console.log();
     response.send(convertJsonStatsToObj(stateStats));
   } catch (error) {
     console.log(`DB Error: ${error.message}`);
